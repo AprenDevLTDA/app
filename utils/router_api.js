@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
 import axios from 'axios';
-const API_URL = process.env.URL_FIREBASE;
+const API_URL = "https://apren-dev-fdb98-default-rtdb.firebaseio.com/";
 
 
 class RouterApi {

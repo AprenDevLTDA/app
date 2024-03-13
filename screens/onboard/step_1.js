@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, Text, Image, Button } from 'react-native';
+import { SafeAreaView, View, Image, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
 import styles from './styles/style';
 import RouterApi from '../../utils/router_api';
@@ -22,15 +22,29 @@ class SuaOutraClasse extends React.Component {
     }
     render() {
         return (
-            <ScrollView>
-                <View style={styles.container}>
-                    <Image style={styles.image} source={require('../../assets/LEGO_logo.svg.webp')} />
-                    <Text style={styles.text}>Pois é</Text>
-                </View>
-                <View style={styles.container}>
-                    <Text style={styles.button} onPress={() => { this.nexStep() }}>Acesse minha conta</Text>
-                </View>
-            </ScrollView>
+            <SafeAreaView style={styles.safeArea}>
+                <ScrollView>
+                    <View style={styles.container}>
+                        <Image style={styles.image} source={require('../../assets/LEGO_logo.svg.webp')} />
+                        <Text style={styles.title}>Seja bem-vindo!</Text>
+                        <Text style={styles.description}>Uma breve descrição do seu aplicativo.</Text>
+                    </View>
+
+                    <View style={styles.formContainer}>
+                        <TextInput style={styles.input} placeholder="Nome" />
+                        <TextInput style={styles.input} placeholder="Sobrenome" />
+                        <TextInput style={styles.input} placeholder="E-mail" keyboardType="email-address" />
+                        <TextInput style={styles.input} placeholder="Senha" secureTextEntry={true} />
+                        <TextInput style={styles.input} placeholder="Confirmar Senha" secureTextEntry={true} />
+
+                        <TouchableOpacity style={styles.button} onPress={this.handleButtonPress}>
+                            <Text style={styles.buttonText}>Enviar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+
+
         )
     };
 
