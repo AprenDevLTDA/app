@@ -4,49 +4,83 @@ import { SafeAreaView, View, Image, Text, TextInput, TouchableOpacity, StyleShee
 import { ScrollView } from "react-native-gesture-handler";
 import styles from './styles/style';
 import RouterApi from '../../utils/router_api';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native';
+
+
 import axios from 'axios';
 
-class SuaOutraClasse extends React.Component {
-    async nexStep() {
-        try {
-            const body = {
-                'id': 1,
-                'nome': 'nome'
-            };
+const Step1Screen = () => {
 
-            const request = await RouterApi.postData(body);
-            console.log(request);
-        } catch (error) {
-            console.error('Erro na solicitação:', error.message);
-        }
-    }
-    render() {
-        return (
-            <SafeAreaView style={styles.safeArea}>
-                <ScrollView>
-                    <View style={styles.container}>
-                        <Image style={styles.image} source={require('../../assets/LEGO_logo.svg.webp')} />
-                        <Text style={styles.title}>Seja bem-vindo!</Text>
-                        <Text style={styles.description}>Uma breve descrição do seu aplicativo.</Text>
+
+    // const async nexStep = () =>  {
+    //     try {
+    //         const body = {
+    //             'id': 1,
+    //             'nome': 'nome'
+    //         };
+
+    //         const request = await RouterApi.postData(body);
+    //         console.log(request);
+    //     } catch (error) {
+    //         console.error('Erro na solicitação:', error.message);
+    //     }
+    // }
+
+    const navigation = useNavigation();
+
+    return (
+        <SafeAreaView style={styles.safeArea}>
+            <ScrollView>
+
+                <View style={styles.container}>
+                    <TouchableOpacity onPress={() => { navigation.navigate('IntroScreen') }}>
+                        <View style={{ paddingRight: 100, paddingTop: 40, paddingLeft: 20 }}>
+                            {/* Mover o ícone para a esquerda */}
+                            <Icon name="arrow-back" size={30} color="#000" />
+                        </View>
+                    </TouchableOpacity>
+                    <View style={{ flex: 1, justifyContent: 'center', paddingTop: 40 }}>
+                        {/* Centralizar a imagem horizontalmente */}
+                        <Image style={styles.image} source={require('../../assets/logo.png')} />
                     </View>
+                </View>
+                <Text style={styles.title}>Cadastro</Text>
+                <View style={styles.formContainer}>
+                    <Text style={styles.label}><Text style={styles.label_aster}>*</Text> Nome</Text>
+                    <TextInput style={styles.input} placeholder="Nome" />
+                    <Text style={styles.label}><Text style={styles.label_aster}>*</Text> Username</Text>
 
-                    <View style={styles.formContainer}>
-                        <TextInput style={styles.input} placeholder="Nome" />
-                        <TextInput style={styles.input} placeholder="Sobrenome" />
-                        <TextInput style={styles.input} placeholder="E-mail" keyboardType="email-address" />
-                        <TextInput style={styles.input} placeholder="Senha" secureTextEntry={true} />
-                        <TextInput style={styles.input} placeholder="Confirmar Senha" secureTextEntry={true} />
+                    <TextInput style={styles.input} placeholder="Username" />
+                    <Text style={styles.label}><Text style={styles.label_aster}>*</Text> E-mail</Text>
 
+                    <TextInput style={styles.input} placeholder="E-mail" keyboardType="email-address" />
+                    <Text style={styles.label}><Text style={styles.label_aster}>*</Text> Senha</Text>
+
+                    <TextInput style={styles.input} placeholder="Senha" passwordRules={true} secureTextEntry={true} />
+                    <Text style={styles.label}><Text style={styles.label_aster}>*</Text> Confirmar Senha</Text>
+
+                    <TextInput style={styles.input} placeholder="Confirmar Senha" passwordRules={true} secureTextEntry={true} />
+
+                    <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.button} onPress={this.handleButtonPress}>
-                            <Text style={styles.buttonText}>Enviar</Text>
+                            <Text style={styles.buttonText}>Avançar</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button2} onPress={this.handleSecondButtonPress}>
+                            <Text style={styles.buttonText}>Cancelar</Text>
                         </TouchableOpacity>
                     </View>
-                </ScrollView>
-            </SafeAreaView>
 
 
-        )
-    };
+                </View>
+                <View>
+                    <Text style={{ textAlign: "center", fontSize: 20 }}>Login</Text></View>
+            </ScrollView>
+        </SafeAreaView>
+
+
+    )
+
 
 }
-export default SuaOutraClasse;
+export default Step1Screen;
