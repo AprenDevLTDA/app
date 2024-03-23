@@ -3,11 +3,11 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import IntroScreen from './screens/intro';
 import Step1Screen from './screens/onboard/step_1';
 import { name as appName } from './app.json';
 import { getApps, initializeApp } from '@react-native-firebase/app';
 import { AppRegistry } from 'react-native';
+import IntroScreen from './screens/intro';
 
 // const firebaseConfig = {
 //   apiKey: 'AIzaSyBSUe2EC6N8YVYlS_waHEjj5HGkCLIlR84',
